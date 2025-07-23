@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传简历</title>
+    <style>
+        /* 设置标题框样式 */
+        .h1-box {
+            position: fixed;
+            width: calc(394 / 1920 * 100vw);
+            height: calc(110 / 1080 * 100vh);
+            left: 0;
+            top: calc(124 / 1080 * 100vh);
+            background-color: #ffffff;       /* 设置背景颜色 */
+            margin: 0;                         /* 去除标题默认外边距 */
+            border: none;                      /* 去除默认边框 */
+        }
+        /* 设置标题样式 */
+        .h1-box h1 {
+            font: Inter;                 /* 字体 */
+            font-weight: 400;            /* 字体粗细 */
+            font-style: regular;         /* 字体样式 */
+            font-size: 40px;             /* 字体大小 */
+            line-height: 55px;           /* 行高 */
+            letter-spacing: 0%;          /* 字母间距 */
+            vertical-align: middle;      /* 垂直对齐 */
+            text-align: center;          /* 文本居中 */
+            text-transform: Title case;  /* 首字母大写 */
+            color: #000000;            /* 字体颜色 */
+        }
+
+        /* 文本框样式 */
+        .text-box
+
+        /* 设置文本框内字体样式 */
+        .text-box p
+
+        /* 图片样式 */
+        .image {
+            position: fixed;                   /* 固定定位，相对于浏览器窗口 */
+            left: 0;                           /* 图片左边缘与浏览器左边缘对齐 */
+            top: calc(511 / 1080 * 100vh);     /* 图片上边缘与浏览器上边缘对齐 */
+            width: calc(763 / 1920 * 100vw);   /* 图片宽度占比 */
+            height: calc(569 / 1080 * 100vh);  /* 图片高度占比 */
+        }
+
+        /* 功能框样式 */
+        .function-box
+
+        .function-box h2
+
+        .file-box
+
+        .file-box img
+
+        .file-box textarea
+
+        .function-box .last-step
+
+        .function-box .finish
+
+        /* 设置按钮样式 */
+        .function-box img.bar1
+
+        .function-box img.bar2
+
+        /* 设置图标样式 */
+        .function-box img.round11
+
+        .function-box img.round12
+
+        .function-box img.round13
+
+        .function-box img.round21
+
+        .function-box img.round22
+
+        .function-box img.round23
+
+        .function-box img.round31
+
+        .function-box img.round32
+
+        .function-box img.round33
+        /**/
+    </style>
+</head>
+<body>
+    <div class="h1-box">
+        <h1>Finish!<br>Upload Your Resume</h1>
+    </div>
+    <div class="text-box">
+        <p>Upload your resume, the platform will help you parse and optimize, you<br>can also skip this step</p>
+    </div>
+    <div class="image">
+        <img class="image" src="icons/picture1.png" alt="lift-Icon">
+    </div>
+    <div class="function-box">
+        <h2>Upload file</h2>
+        <div class="file-box">
+            <img class="icon" src="icons/Vector.png" alt="up-Icon">
+            <textarea class="textarea" placeholder="Drag your resume file to this area, or click on the area to select the appropriate file to upload"></textarea>
+        </div>
+        <button class="last-step" onclick="window.location.href='upload.html'">Last step</button>
+        <button class="finish" onclick="window.location.href='skip.html'">Finish</button>
+        <img class="bar1" src="icons/Bar.png" alt="down-Bar_down">
+        <img class="bar2" src="icons/Bar - Active.png" alt="down-Bar_up">
+        <img class="round11" src="icons/Oval.png" alt="down-Round11">
+        <img class="round12" src="icons/Oval-2.png" alt="down-Round12">
+        <img class="round13" src="icons/Check.png" alt="down-Round13">
+        <img class="round21" src="icons/Oval.png" alt="down-Round21">
+        <img class="round22" src="icons/Oval-2.png" alt="down-Round22">
+        <img class="round23" src="icons/Check.png" alt="down-Round23">
+        <img class="round31" src="icons/Oval.png" alt="down-Round31">
+        <img class="round32" src="icons/Oval-2.png" alt="down-Round32">
+        <img class="round33" src="icons/Check.png" alt="down-Round33">
+    </div>
+</body>
+</html>
