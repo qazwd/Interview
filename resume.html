@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>上传简历</title>
     <style>
+        /* 大屏（如PC端） */
         body {position: fixed}
         .function-box input, img, textarea, button {position: fixed;}
 
@@ -70,7 +71,9 @@
             left: calc(875 / 1920 * 100vw);
             border-radius: min(calc(32 / 1920 * 100vw), calc(32 / 1080 * 100vh));  /* 边框圆角半径 */
             color: #ffffff;
-            box-shadow: 0 min(calc(2 / 1920 * 100vw), calc(2 / 1080 * 100vh)) min(calc(20 / 1920 * 100vw), calc(20 / 1080 * 100vh)) 0 rgba(19,67,112,0.15);        }
+            box-shadow: 0 min(calc(2 / 1920 * 100vw), calc(2 / 1080 * 100vh)) min(calc(20 / 1920 * 100vw), calc(20 / 1080 * 100vh)) 0 rgba(19,67,112,0.15);
+        }
+
         /* 设置功能框内 标题框 及 字体 样式 */
         .h2-box h2 {
             position: fixed;
@@ -97,6 +100,7 @@
             justify-content: center;
             align-items: center;
         }
+
         /* 设置文件框内点击区域样式 */
         .file-selector {
             position: fixed;
@@ -108,11 +112,20 @@
             border: min(calc(1/1920*100vw), calc(1/1080*100vh)) dashed #0538BB;
             background-color: #f2faff;
         }
+        .file-selector:hover {
+            background-color: #dbf1ff;              /* 鼠标悬停时背景色 */
+        }
+        .file-selector:active {
+            background-color: #c0e5ff;              /* 鼠标点击时背景色 */
+            transform: translateY(2 / 1080 * 100vh);  /* 点击时向下移动 2px */
+        }
+
         /* 显示选中的文件信息 */
         .file-info {
             margin-top: min(calc(10 / 1920 * 100vw), calc(10 / 1080 * 100vh));
             color: #333;
         }
+
         /* 设置框内图标样式 */
         .file-box img {
             width: calc(58 / 1920 * 100vw);
@@ -121,6 +134,7 @@
             left: calc(1317 / 1920 * 100vw);
             color: #1849D6;
         }
+
         /* 设置文本域样式 */
         .file-box textarea {
             width: calc(499 / 1920 * 100vw);
@@ -145,20 +159,16 @@
         }
         /* 移除文本域聚焦时的边框 */
         .file-box textarea:focus {
-            outline: none; /* 移除聚焦时的默认外边框 */
+            outline: none;                    /* 移除聚焦时的默认外边框 */
         }
+        
         /* textarea滚动样式 */
         #fileInfo {
-            /* 确保textarea有固定高度以启用滚动 */
-            height: 150px;
-            /* 启用垂直滚动 */
-            overflow-y: auto;
-            /* 禁用水平滚动 */
-            overflow-x: hidden;
-            /* 移除默认焦点边框 */
-            outline: none;
-            /* 可选：添加内边距增强可读性 */
-            padding: 8px;
+            height: 150px;            /* 确保textarea有固定高度以启用滚动 */
+            overflow-y: auto;         /* 启用垂直滚动 */
+            overflow-x: hidden;       /* 禁用水平滚动 */
+            outline: none;            /* 移除聚焦时的默认外边框 */
+            padding: 8px;             /* 可选：添加内边距增强可读性 */
         }
 
         /* 设置按钮样式 */
@@ -176,10 +186,10 @@
             transition: all 0.3s ease;    /* 添加过渡效果 */
         }
         .button button.last-step:hover {
-            background-color: #5a93e6;               /* hover 状态背景色 */
+            background-color: #5a93e6;
         }
         .button button.last-step:active {
-            background-color: #1b5aff;               /* active 状态背景色 */
+            background-color: #1b5aff;
             transform: translateY(2 / 1080 * 100vh);   /* 按下时向下移动 2px */
         }
         /* 禁用状态样式 */
@@ -187,9 +197,6 @@
             background-color: #75acff;
             cursor: not-allowed;
             transform: none;
-        }
-        .button button.last-step:disabled:hover {
-            background-color: #5a93e6;
         }
 
         .button button.finish {
@@ -256,6 +263,122 @@
             letter-spacing: 0;
             text-transform: uppercase;
             color: #ffffff;
+        }
+
+        /* 小屏（如移动端） */
+        /* 响应式布局：屏幕宽度≤768px时启用（移动端） */
+        @media (max-width: 768px) {
+            /* 1. 左侧内容区调整（标题、说明文本、图片） */
+            .h1-box {
+                width: calc(90% - 40px); /* 占屏幕宽度90%（留边距） */
+                left: 20px; /* 左右边距20px */
+                top: 20px; /* 顶部边距20px */
+                height: auto; /* 高度自适应内容 */
+            }
+            .h1-box h1 {
+                font-size: 28px; /* 固定字体大小（小屏幕更易读） */
+                line-height: 1.5; /* 行高自适应 */
+            }
+
+            .text-box {
+                width: calc(90% - 40px);
+                left: 20px;
+                top: calc(120px); /* 在标题下方120px位置 */
+                height: auto;
+            }
+            .text-box p {
+                font-size: 16px; /* 小屏幕字体缩小 */
+                line-height: 1.6;
+            }
+
+            .image {
+                width: calc(90% - 40px); /* 图片占屏幕宽度90% */
+                height: auto; /* 高度按比例自适应 */
+                left: 20px; /* 左右居中 */
+                top: calc(220px); /* 在说明文本下方 */
+                margin-bottom: 40px; /* 与下方功能区留间距 */
+            }
+
+            /* 2. 右侧功能区调整（改为上下布局的下方区域） */
+            .function-box {
+                width: calc(90% - 40px); /* 占屏幕宽度90% */
+                left: 20px; /* 左右居中 */
+                top: calc(220px + 300px); /* 在图片下方（300px为预估图片高度，可根据实际调整） */
+                height: auto; /* 高度自适应内容 */
+                padding: 20px 0; /* 内部上下留白 */
+            }
+
+            /* 3. 功能区内部元素调整 */
+            .h2-box h2 {
+                left: 20px; /* 与功能区左对齐 */
+                top: 20px; /* 功能区顶部20px */
+                font-size: 24px; /* 标题字体缩小 */
+            }
+
+            .file-selector {
+                width: calc(100% - 40px); /* 占功能区宽度100%（留边距） */
+                left: 20px; /* 与功能区左对齐 */
+                top: 80px; /* 在功能区标题下方 */
+                height: 200px; /* 固定高度（小屏幕更紧凑） */
+            }
+
+            .file-box img {
+                left: 50%; /* 图标水平居中 */
+                transform: translateX(-50%); /* 水平居中偏移 */
+                top: calc(80px + 50px); /* 图标在上传区域内居中 */
+            }
+
+            .file-box textarea {
+                width: calc(100% - 80px); /* 文本域宽度自适应 */
+                left: 40px; /* 左右留边距40px */
+                top: calc(80px + 100px); /* 文本在图标下方 */
+                height: 60px !important; /* 固定高度 */
+                font-size: 14px; /* 字体缩小 */
+            }
+
+            /* 4. 按钮区域调整 */
+            .button {
+                position: fixed;
+                top: calc(220px + 300px + 320px); /* 在功能区下方（根据上传区高度计算） */
+                left: 50%;
+                transform: translateX(-50%); /* 按钮组水平居中 */
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                gap: 20px; /* 按钮间距 */
+            }
+            .button button.last-step,
+            .button button.finish {
+                width: 120px; /* 按钮宽度缩小 */
+                height: 40px; /* 按钮高度缩小 */
+                left: auto; /* 取消固定left，由flex布局控制 */
+                top: auto; /* 取消固定top */
+            }
+
+            /* 5. 进度条调整 */
+            .load_bar {
+                top: calc(220px + 300px + 320px + 60px); /* 在按钮下方 */
+                left: 50%;
+                transform: translateX(-50%); /* 进度条水平居中 */
+                width: 80%; /* 进度条宽度占80% */
+            }
+            .load_bar img.bar1,
+            .load_bar img.bar2 {
+                left: 0; /* 进度条左对齐容器 */
+                width: 100%; /* 进度条宽度自适应容器 */
+            }
+            .load_bar img.round11,
+            .load_bar img.round21,
+            .load_bar img.round31 {
+                left: 0; /* 圆形进度点重新定位 */
+                transform: none;
+            }
+            .load_bar img.round21 {
+                left: 33%; /* 第二个点在1/3位置 */
+            }
+            .load_bar img.round31 {
+                left: 66%; /* 第三个点在2/3位置 */
+            }
         }
     </style>
 </head>
