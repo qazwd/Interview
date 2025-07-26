@@ -190,7 +190,7 @@
         }
         .button button.last-step:active {
             background-color: #1b5aff;
-            transform: translateY(2 / 1080 * 100vh);   /* 按下时向下移动 2px */
+            transform: translateY(2 / 1080 * 100vh);
         }
         /* 禁用状态样式 */
         .button button.last-step:disabled {
@@ -218,7 +218,7 @@
         }
 
         /* 设置进度条显示样式 */
-        .load_bar {position: fixed;}
+        .load_bar {position: relative;}
         .load_bar img.bar1, img.bar2 {left: calc(1175 / 1920 * 100vw); height: calc(4 / 1080 * 100vh); top: calc(910 / 1080 * 100vh)}
         .load_bar img.bar1 {width: calc(343 / 1920 * 100vw); color: #dde0e7}
         .load_bar img.bar2 {width: calc(299 / 1920 * 100vw); border-radius: min(calc(2 / 1920 * 100vw), calc(2 / 1080 * 100vh)); color: #85a7ff}
@@ -268,117 +268,113 @@
         /* 小屏（如移动端） */
         /* 响应式布局：屏幕宽度≤768px时启用（移动端） */
         @media (max-width: 768px) {
-            /* 1. 左侧内容区调整（标题、说明文本、图片） */
+            /* 1. 全局重置固定定位的布局逻辑，改为上下流式布局 */
+            body {
+                position: static;              /* 取消固定定位，改为默认流式布局 */
+                padding: 40px 20px 40px 20px;  /* 整体留边距，避免内容贴边 */
+            }
+
+            /* 2. 左侧内容区（标题、说明文本、图片）调整为顶部区域，从上到下排列 */
             .h1-box {
-                width: calc(90% - 40px); /* 占屏幕宽度90%（留边距） */
-                left: 20px; /* 左右边距20px */
-                top: 20px; /* 顶部边距20px */
-                height: auto; /* 高度自适应内容 */
+                position: static; /* 取消固定定位 */
+                width: 100%;      /* 占满屏幕宽度 */
+                height: auto;     /* 高度自适应内容 */
+                margin-bottom: 20px;
             }
             .h1-box h1 {
-                font-size: 28px; /* 固定字体大小（小屏幕更易读） */
-                line-height: 1.5; /* 行高自适应 */
+                font-size: 28px;
+                text-align: center;
             }
 
             .text-box {
-                width: calc(90% - 40px);
-                left: 20px;
-                top: calc(120px); /* 在标题下方120px位置 */
+                position: static;
+                width: 100%;
                 height: auto;
+                margin-bottom: 30px;
             }
             .text-box p {
-                font-size: 16px; /* 小屏幕字体缩小 */
-                line-height: 1.6;
+                font-size: 16px;
+                text-align: center;
+                color: #A5A5A5;
             }
 
             .image {
-                width: calc(90% - 40px); /* 图片占屏幕宽度90% */
-                height: auto; /* 高度按比例自适应 */
-                left: 20px; /* 左右居中 */
-                top: calc(220px); /* 在说明文本下方 */
-                margin-bottom: 40px; /* 与下方功能区留间距 */
+                position: static;
+                width: 100%;             /* 图片占满宽度 */
+                height: auto;            /* 保持图片比例 */
+                margin: 0 auto 40px;     /* 水平居中，与下方功能区留白 */
+                display: block;          /* 确保margin:auto生效 */
             }
 
-            /* 2. 右侧功能区调整（改为上下布局的下方区域） */
+            /* 3. 右侧功能区调整为下方区域，在内容区之后从上到下排列 */
             .function-box {
-                width: calc(90% - 40px); /* 占屏幕宽度90% */
-                left: 20px; /* 左右居中 */
-                top: calc(220px + 300px); /* 在图片下方（300px为预估图片高度，可根据实际调整） */
-                height: auto; /* 高度自适应内容 */
-                padding: 20px 0; /* 内部上下留白 */
-            }
-
-            /* 3. 功能区内部元素调整 */
-            .h2-box h2 {
-                left: 20px; /* 与功能区左对齐 */
-                top: 20px; /* 功能区顶部20px */
-                font-size: 24px; /* 标题字体缩小 */
-            }
-
-            .file-selector {
-                width: calc(100% - 40px); /* 占功能区宽度100%（留边距） */
-                left: 20px; /* 与功能区左对齐 */
-                top: 80px; /* 在功能区标题下方 */
-                height: 200px; /* 固定高度（小屏幕更紧凑） */
-            }
-
-            .file-box img {
-                left: 50%; /* 图标水平居中 */
-                transform: translateX(-50%); /* 水平居中偏移 */
-                top: calc(80px + 50px); /* 图标在上传区域内居中 */
-            }
-
-            .file-box textarea {
-                width: calc(100% - 80px); /* 文本域宽度自适应 */
-                left: 40px; /* 左右留边距40px */
-                top: calc(80px + 100px); /* 文本在图标下方 */
-                height: 60px !important; /* 固定高度 */
-                font-size: 14px; /* 字体缩小 */
-            }
-
-            /* 4. 按钮区域调整 */
-            .button {
-                position: fixed;
-                top: calc(220px + 300px + 320px); /* 在功能区下方（根据上传区高度计算） */
-                left: 50%;
-                transform: translateX(-50%); /* 按钮组水平居中 */
+                position: static;
                 width: 100%;
+                height: auto;
+                margin: 0 auto;           /* 水平居中 */
+                box-shadow: 0 2px 20px 0 rgba(19,67,112,0.15);
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            .h2-box h2 {
+                position: static;
+                width: 90%;
+                font-size: 24px;
+                text-align: center;
+                margin-bottom: 30px;
+                color: #060326;
+            }
+
+            /* 4. 文件上传区域调整 */
+            .file-box {
+                position: static;
+                width: 80%;
+                height: 200px;
+                margin: 0 auto 30px;
+            }
+            .file-selector {
+                position: static;
+                width: 100%;
+                height: 100%;
                 display: flex;
-                justify-content: center;
-                gap: 20px; /* 按钮间距 */
+                flex-direction: column;     /* 图标和文本上下排列 */
+                justify-content: center;    /* 垂直居中 */
+                align-items: center;        /* 水平居中 */
+            }
+            .file-selector img.icon {
+                position: static;
+                width: 40px;
+                height: auto;
+                margin-bottom: 15px;
+            }
+            .file-selector textarea {
+                position: static;
+                width: 80%;
+                height: auto;
+                font-size: 14px;
+                text-align: center;
+                resize: none;
+            }
+
+            /* 5. 按钮区域改为上下或并排紧凑布局 */
+            .button {
+                position: static;
+                display: flex;
+                flex-direction: column;              /* 手机竖屏按钮上下排列更节省空间 */
+                gap: 15px;                           /* 按钮间距 */
+                align-items: center;                 /* 按钮居中 */
+                margin: 30px 0;
             }
             .button button.last-step,
             .button button.finish {
-                width: 120px; /* 按钮宽度缩小 */
-                height: 40px; /* 按钮高度缩小 */
-                left: auto; /* 取消固定left，由flex布局控制 */
-                top: auto; /* 取消固定top */
+                position: static;
+                width: 80%;                           /* 按钮宽度占满大部分屏幕 */
+                height: 50px;
+                font-size: 16px;
             }
 
-            /* 5. 进度条调整 */
-            .load_bar {
-                top: calc(220px + 300px + 320px + 60px); /* 在按钮下方 */
-                left: 50%;
-                transform: translateX(-50%); /* 进度条水平居中 */
-                width: 80%; /* 进度条宽度占80% */
-            }
-            .load_bar img.bar1,
-            .load_bar img.bar2 {
-                left: 0; /* 进度条左对齐容器 */
-                width: 100%; /* 进度条宽度自适应容器 */
-            }
-            .load_bar img.round11,
-            .load_bar img.round21,
-            .load_bar img.round31 {
-                left: 0; /* 圆形进度点重新定位 */
-                transform: none;
-            }
-            .load_bar img.round21 {
-                left: 33%; /* 第二个点在1/3位置 */
-            }
-            .load_bar img.round31 {
-                left: 66%; /* 第三个点在2/3位置 */
-            }
+            .load_bar {display: none; padding: 30px;}  /* 移动端隐藏进度条 */
         }
     </style>
 </head>
@@ -424,7 +420,7 @@
     </div>
     <script>
     // 用二维数组记录文件批次，每个元素是一次添加的文件数组
-    let fileBatches = [];  // 存储文件批次
+    let fileBatches = [];    // 存储文件批次
     let selectedFiles = [];  // 所有已选择的文件
 
     const fileSelector = document.getElementById('customFileSelector');
