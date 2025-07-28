@@ -38,7 +38,7 @@ def get_job_listings():
             data = response.json()
 
             # 打印响应数据，方便调试
-            #print("Response Data:", data)
+            print("Response Data:", data)
 
             # 提取职位列表数据
             job_postings = data.get("jobPostings", [])
@@ -94,4 +94,4 @@ if __name__ == "__main__":
     with TimeTracer() as time_tracer:
         print("开始爬取数据...")
         main()
-    print("数据爬取完成。")
+        print("数据爬取完成。")
