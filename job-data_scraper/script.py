@@ -49,14 +49,18 @@ def get_job_listings():
                 job_name = job.get("title", "N/A")
                 location = job.get("locationsText", "N/A")
                 job_url = f"https://pultegroup.wd1.myworkdayjobs.com{job.get('externalPath', 'N/A')}"
-                all_jobs.append({
+                new_job = {
                     "Job_name": job_name,
                     "Location": location,
                     "URL": job_url
-                })
+                }
+                # 检查新职位是否已存在
+                if new_job not in all_jobs:
+                    all_jobs.append(new_job)
 
             # 更新偏移量，准备下一页请求
             offset += payload["limit"]
+            print(f"当前偏移量: {offset}")  # 打印当前偏移量，方便调试
 
         except requests.RequestException as e:
             print(f"请求出错: {e}")
@@ -90,3 +94,4 @@ if __name__ == "__main__":
     with TimeTracer() as time_tracer:
         print("开始爬取数据...")
         main()
+    print("数据爬取完成。")
